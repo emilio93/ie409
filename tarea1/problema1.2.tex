@@ -1,0 +1,77 @@
+\begin{align*}
+  \tag{Entrada del sistema}
+  u(t) & = e(t) \\
+  \tag{Sailda del sistema}
+  y(t) & = i_1
+\end{align*}
+
+Se utilizan las mismas ecuaciones de mallas y relaciones del problema 1.1.
+Se despeja $i_2$ de Malla 1 y se sustituye en Malla 2, igualmente se sustituyen
+las relaciones, y se resuelve para la RES:
+\begin{align*}
+  e(t) = R_1 (i_1 + i_2) + v_L \Rightarrow & i_2 = \frac{u(t) - R_1 y(t) + v_L}{R_1}\\
+  v_L  = v_c + R_2 i_2 \Rightarrow & v_L   = \frac{1}{C}\int_0^t i_2 {dt} + R_2 \frac{u(t) - R_1 y(t) + L\frac{di}{dt}}{R_1} \\
+  & v_L   = \frac{1}{C}\int_0^t \left( \frac{u(t) - R_1 y(t) + v_L}{R_1} \right) {dt} + R_2 \frac{u(t) - R_1 y(t) + L\frac{dy(t)}{dt}}{R_1} \\
+  & L\frac{dy(t)}{dt}   = \frac{1}{R_1C}\int_0^t \left( u(t) - R_1 y(t) + L\frac{dy(t)}{dt} \right) {dt} + \frac{R_2}{R_1} \left(u(t) - R_1 y(t) + L\frac{dy(t)}{dt}\right) \\
+  & L\dot{y}(t)  = \frac{1}{R_1C}\int_0^t \left( u(t) - R_1 y(t) \right) {dt} + \frac{L}{R_1C}y(t)  + \frac{R_2}{R_1} \left(u(t) - R_1 y(t) + L\dot{y}(t)\right) \\
+\end{align*}
+\begin{align*}
+  S(\overline{u}, \overline{y})  &=
+    \frac{1}{R_1C} \int_0^t u(t) {dt} - \frac{1}{C} \int_0^t y(t) dt +
+    \left( \frac{L}{R_1C} - R_2 \right) y(t) +
+    \left( \frac{R_2}{R_1} - 1 \right) L\dot{y}(t) = 0
+  \\
+  \tag{RES}
+  S(\overline{u}, \overline{y})  &=
+    \frac{1}{R_1C} u(t) - \frac{1}{C} y(t) +
+    \left( \frac{L}{R_1C} - R_2 \right)  \dot{y}(t) +
+    \left( \frac{R_2}{R_1} - 1 \right) L\ddot{y}(t) = 0
+\end{align*}
+
+Se aplica la transformada de Laplace y se resuleve:
+\begin{align*}
+  \frac{1}{R_1C} U(s) - \frac{1}{C} Y(s) +
+  \left( \frac{L}{R_1C} - R_2 \right) s  Y(s) +
+  \left( \frac{R_2}{R_1} - 1 \right) L s^2  Y(s) = 0
+  \\
+  \frac{1}{R_1C} U(s) +
+  \left[
+    \left( \frac{L}{R_1C} - R_2 \right) s
+    - \frac{1}{C}
+    + \left( \frac{R_2}{R_1} - 1 \right) L s^2
+  \right] Y(s) = 0 \\
+  \frac{1}{R_1C} U(s) =
+  \left[
+    \frac{1}{C}
+    - \left( \frac{L}{R_1C} - R_2 \right) s
+    - \left( \frac{R_2}{R_1} - 1 \right) L s^2
+  \right] Y(s) \\
+\end{align*}
+\begin{align*}
+  \Delta &= \left( \frac{L}{R_1C} - R_2 \right)^2 + 4 \left( \frac{R_2}{R_1} - 1 \right) L \frac{1}{C}   \\
+  \Delta &= \left( \frac{L}{R_1C} \right)^2 - 2 \frac{R_2L}{R_1C} + R_2^2 + \frac{4R_2L}{R_1C} - \frac{4L}{C} \\
+  \Delta &= \left( \frac{L}{R_1C} \right)^2 + 2 \frac{R_2L}{R_1C} + R_2^2 - \frac{4L}{C} \\
+  \Delta &= \left( \frac{L}{R_1C} + R_2 \right)^2 - \frac{4L}{C}
+\end{align*}
+
+\begin{align*}
+  s &= \frac{\left( \frac{L}{R_1C} - R_2 \right) \pm \sqrt{\left( \frac{L}{R_1C} + R_2 \right)^2 - \frac{4L}{C}}}{-2 \left( \frac{R_2}{R_1} - 1 \right) L } \\
+  s_0 &= \frac{\left( R_2 - \frac{L}{R_1C} \right) - \sqrt{\left( \frac{L}{R_1C} + R_2 \right)^2 - \frac{4L}{C}}}{2 L \left( \frac{R_2}{R_1} - 1 \right) } \\
+  s_1 &= \frac{\left( R_2 - \frac{L}{R_1C} \right) + \sqrt{\left( \frac{L}{R_1C} + R_2 \right)^2 - \frac{4L}{C}}}{2 L \left( \frac{R_2}{R_1} - 1 \right) }
+\end{align*}
+
+\begin{align*}
+  R_1C (s-s_0)(s-s_1) Y(s) = U(s) \\
+  \frac{Y(s)}{U(s)} = \frac{1}{R_1C} \frac{1}{(s-s_0)(s-s_1)}  = \frac{A}{s-s_0} + \frac{B}{s-s_1} \\
+  \frac{1}{R_1C}  = A(s-s_1) + B(s-s_0) \\
+  \text{Cuando } s = s_0 \Rightarrow \frac{1}{R_1C}  = A(s_0-s_1) \Rightarrow A = \frac{1}{R_1C} \frac{1}{s_0-s_1} \\
+  \text{Cuando } s = s_1 \Rightarrow \frac{1}{R_1C}  = B(s_1-s_0) \Rightarrow B = \frac{1}{R_1C} \frac{1}{s_1-s_0} \\
+  \frac{Y(s)}{U(s)} = \frac{1}{R_1C} \frac{1}{(s_0-s_1)(s-s_0)} + \frac{1}{R_1C} \frac{1}{(s_1-s_0)(s-s_1)} \\
+\end{align*}
+
+Se aplica la transformada inversa de Laplace para obtener la RESE:
+\begin{align*}
+  \frac{y(t)}{u(t)} = \frac{1}{R_1C} \frac{1}{(s_0-s_1)}e^{s_0t} + \frac{1}{R_1C} \frac{1}{(s_1-s_0)}e^{s_1t} \\
+  \tag{RESE}
+  y(t) = \frac{1}{R_1C} u(t) \left[\frac{1}{(s_0-s_1)}e^{s_0t} + \frac{1}{(s_1-s_0)}e^{s_1t}\right]
+\end{align*}

@@ -1,0 +1,80 @@
+% Copyright 2017 Emilio Rojas
+%
+% Permission is hereby granted, free of charge, to any person obtaining a copy of
+% this software and associated documentation files (the "Software"), to deal in
+% the Software without restriction, including without limitation the rights to
+% use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+% the Software, and to permit persons to whom the Software is furnished to do so,
+% subject to the following conditions:
+%
+% The above copyright notice and this permission notice shall be included in all
+% copies or substantial portions of the Software.
+%
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+% FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+% COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+% IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+% CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+% Unnumbered section added to toc
+% 1: The section's name.
+\newcommand{\usection}[1]
+{
+  \section*{#1}
+  \addcontentsline{toc}{section}{#1}
+}
+
+% Unnumbered subsection added to toc
+% 1: The subsection's name.
+\newcommand{\usubsection}[1]
+{
+  \subsection*{#1}
+  \addcontentsline{toc}{subsection}{#1}
+}
+
+% Unnumbered subsubsection added to toc
+% 1: The subsubsection's name.
+\newcommand{\usubsubsection}[1]
+{
+  \subsubsection*{#1}
+  \addcontentsline{toc}{subsubsection}{#1}
+}
+
+% Circuitikz equal
+\newcommand*{\equal}{=}
+
+% Adds a title page to the document
+% 1: The document's name
+% 2: The document's owner's name
+% 3: The document's owner's id
+% 4: The document's date
+
+% \portada{Homework}{John Doe}{123456}{\today}
+\newcommand{\portada}[4]
+{
+  \begin{titlepage}
+    \vspace*{\fill}
+    \begin{center}
+
+      \textsc{\Large Universidad de Costa Rica}\\
+      [0.25in]
+
+      \textsc{\Large Escuela de Ingeniería Eléctrica}\\
+      [0.55in]
+
+      \textsc{\Large Análisis de Sistemas - IE0409}\\
+      [0.25in]
+
+      \textsc{\huge \bfseries {#1}}\\
+      [0.5in]
+
+      \textsc{\large {#2}}\\
+      \textsc{\large {#3}}\\
+      [0.5in]
+
+      \textsc{\large {#4}}
+    \end{center}
+    \vspace*{\fill}
+  \end{titlepage}
+}

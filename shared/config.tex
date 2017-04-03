@@ -1,0 +1,113 @@
+% Copyright 2017 Emilio Rojas
+%
+% Permission is hereby granted, free of charge, to any person obtaining a copy of
+% this software and associated documentation files (the "Software"), to deal in
+% the Software without restriction, including without limitation the rights to
+% use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+% the Software, and to permit persons to whom the Software is furnished to do so,
+% subject to the following conditions:
+%
+% The above copyright notice and this permission notice shall be included in all
+% copies or substantial portions of the Software.
+%
+% THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+% IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+% FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+% COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+% IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+% CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+% allows to use < and > on tikz pictures when babel set to spanish
+% http://tex.stackexchange.com/questions/166772/problem-with-babel-and-tikz-using-draw
+\usetikzlibrary{babel}
+\usetikzlibrary{arrows}
+\usetikzlibrary{positioning}
+\usetikzlibrary{quotes, angles}
+
+\pgfplotsset{compat=1.13}
+
+\setlength
+  {\columnsep}
+  {1cm}
+
+\patchcmd
+  {\chapter}
+  {\thispagestyle{plain}}
+  {\thispagestyle{fancy}}
+  {}
+  {}
+
+\geometry
+  {
+    a4paper,
+    left=25.4mm,
+    right=25.4mm,
+    top=25.4mm,
+    bottom=25.4mm,
+    heightrounded,
+  }
+
+\sisetup{output-exponent-marker=\textsc{e}}
+\setlength{\jot}{10pt}
+
+% FANCY SETTINGS
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Análisis de Sistemas}
+\rfoot{\thepage}
+\setlength{\headheight}{20pt}
+
+% ZENER
+\makeatletter
+\pgfcircdeclarebipole{}{
+  \ctikzvalof{bipoles/diode/height}
+}{fullzzdiode}{
+  \ctikzvalof{bipoles/diode/height}
+}{
+  \ctikzvalof{bipoles/diode/width}
+}{
+
+  \pgfsetlinewidth{\pgfkeysvalueof{/tikz/circuitikz/bipoles/thickness}\pgfstartlinewidth}
+
+  \pgfscope
+    \pgftransformxshift{\pgf@circ@res@left}
+    \pgfpathmoveto{\pgfpoint{\pgf@circ@res@right-\pgf@circ@res@left}{0pt}}
+    \pgfpathlineto{\pgfpoint{0pt}{\pgf@circ@res@up}}
+    \pgfpathlineto{\pgfpoint{0pt}{\pgf@circ@res@down}}
+    \pgfpathlineto{\pgfpoint{\pgf@circ@res@right-\pgf@circ@res@left}{0pt}}
+    \pgfusepath{draw,fill}
+    \pgfpathmoveto{
+      \pgfpoint{
+        \pgf@circ@res@right-1.8\pgf@circ@res@left
+      }{
+        \pgf@circ@res@down-0.5\pgf@circ@res@up
+      }
+    }
+    \pgfpathlineto{
+      \pgfpoint{
+        \pgf@circ@res@right-\pgf@circ@res@left
+      }{
+        \pgf@circ@res@down
+      }
+    }
+    \pgfpathlineto{
+      \pgfpoint{
+        \pgf@circ@res@right-\pgf@circ@res@left
+      }{
+        \pgf@circ@res@up
+      }
+    }
+    \pgfpathlineto{
+      \pgfpoint{
+        \pgf@circ@res@right-0.2\pgf@circ@res@left
+      }{
+        \pgf@circ@res@up-0.5\pgf@circ@res@down
+      }
+    }
+    \pgfusepath{draw}
+  \endpgfscope
+}
+\def\pgf@circ@fullzzdiode@path#1{\pgf@circ@bipole@path{fullzzdiode}{#1}}
+\tikzset{full Zzener diode/.style = {\circuitikzbasekey, /tikz/to path=\pgf@circ@fullzzdiode@path}}
+\tikzset{zzD*/.style = {full Zzener diode}}
+\makeatother

@@ -1,0 +1,4 @@
+cmd: "./build.sh"
+name: "LaTeX"
+sh: true,
+cwd: "{FILE_ACTIVE_PATH}"

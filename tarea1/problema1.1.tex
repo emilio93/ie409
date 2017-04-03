@@ -1,0 +1,136 @@
+\begin{figure}[H]
+  \centering
+  \begin{circuitikz}[american currents, american voltages]
+    \draw
+    (0,0) node (start) [ground] {}
+    to [V=$e(t)$] (0, 3)
+    to [R=$R_1$] (3, 3)
+    to [C=$C$, v=$v_c$] (6, 3)
+    to [R=$R_2$, i=$i_2$] (6, 0)
+    to [short, -*] (start)
+    (3, 3)
+    to [L=$L$, i=$i_1$, *-*] (3, 0)
+    ;
+
+    \draw [arrows={-latex}] (1.5, 0.875) arc (-90:-360:0.625) --++(-90:1mm);
+    \draw (1.5, 1.5) node [] {1};
+
+    \draw [arrows={-latex}] (4.5, 0.875) arc (-90:-360:0.625) --++(-90:1mm);
+    \draw (4.5, 1.5) node [] {2};
+  \end{circuitikz}
+\end{figure}
+
+\begin{align*}
+  \tag{Entrada del sistema}
+  u(t) & = e(t) \\
+  \tag{Sailda del sistema}
+  y(t) & = v_c
+\end{align*}
+
+Mallas:
+\begin{align*}
+  \tag{Malla 1}
+  e(t) & = R_1 (i_1 + i_2) + v_L \\
+  \tag{Malla 2}
+  v_L  & = v_c + R_2 i_2         \\
+\end{align*}
+
+Relaciones:
+\begin{align*}
+  i_1 & = \frac{1}{L}\int_0^t v_L dt &
+  i_2 & = C\frac{dv_c}{dt}           &
+  v_L &= L\frac{di_1}{dt}            &
+  v_c &= \frac{1}{C}\int_0^t i_2 {dt}            &
+\end{align*}
+
+Se sustituye $v_L$ de Malla 2 en Malla 1:
+
+\begin{align*}
+  e(t) & = R_1 (i_1 + i_2) + v_c + R_2 i_2  \\
+  e(t) & = R_1 i_1 + (R_1 + R_2) i_2 + v_c  \\
+  u(t) & = R_1 i_1 + (R_1 + R_2) i_2 + y(t)
+\end{align*}
+
+Se sustituye $i_1$, $i_2$ y $v_L$ para obtener la RES:
+
+\begin{align*}
+  u(t)                            & =
+  R_1 \frac{1}{L}\int_0^t v_L(t) dt +
+  (R_1 + R_2) C\frac{dv_c}{dt} +
+  y(t) \\
+  u(t)                            & =
+  R_1 \frac{1}{L}\int_0^t \left(v_c(t) + R_2 i_2 \right) dt +
+  (R_1 + R_2) C\frac{d\thinspace y(t)}{dt} +
+  y(t) \\
+  u(t)                            & =
+  R_1 \frac{1}{L}\int_0^t \left(  y(t) + R_2 C\frac{dv_c}{dt} \right) dt +
+  (R_1 + R_2) C\frac{d\thinspace y(t)}{dt} +
+  y(t) \\
+  u(t)                            & =
+  \frac{R_1}{L}\int_0^t  y(t) dt +
+  \frac{R_1 R_2 C}{L} y(t) +
+  (R_1 + R_2) C\frac{d\thinspace y(t)}{dt} +
+  y(t) \\
+  S( \overline{u},  \overline{y}) & =
+  \frac{R_1}{L}\int_0^t \overline{y} dt +
+  \frac{R_1 R_2 C}{L} y(t) +
+  (R_1 + R_2) C\frac{d\thinspace y(t)}{dt} +
+  y(t) -  u(t) = 0 \\
+  \tag{RES}
+  S( \overline{u},  \overline{y}) & =
+  \frac{R_1}{L}\int_0^t  y(t) dt +
+  \left( 1 + \frac{R_1 R_2 C}{L} \right)  y(t) +
+  (R_1 + R_2) C\frac{d\thinspace y(t)}{dt} -
+  u(t) = 0
+\end{align*}
+
+Se aplica la transformada de Laplace y se resuleve:
+\begin{align*}
+  \frac{R_1}{L}\frac{1}{s} Y(s) +
+  \left( 1 + \frac{R_1 R_2 C}{L} \right)  Y(s) +
+  (R_1 + R_2) C s Y(s) -
+  U(s) = 0
+  \\
+  \left[
+    \frac{R_1}{L}\frac{1}{s} +
+    \left( 1 + \frac{R_1 R_2 C}{L} \right) +
+    (R_1 + R_2) C s
+  \right] Y(s) = U(s)
+  \\
+  \left[
+    \frac{R_1}{Ls} +
+    \frac{L + R_1 R_2 C}{L} +
+    (R_1 + R_2) C s
+  \right] Y(s) = U(s)
+  \\
+  \frac{R_1 + (L + R_1 R_2 C)s + (R_1 + R_2) L C s^2}{Ls} Y(s) = U(s)
+\end{align*}
+
+\begin{align*}
+  \Delta &= (L + R_1 R_2 C)^2 - 4 (R_1 + R_2) L C R_1 \\
+  \Delta &= L^2 + 2 L R_1 R_2 C + (R_1 R_2 C)^2 - 4 L C R_1^2 - 4 L C R_1 R_2 \\
+  \Delta &= L^2 - 2 L C R_1 R_2 + (R_1 R_2 C)^2 - 4 L C R_1^2  \\
+  \Delta &= (L - R_1 R_2 C)^2 - 4 L C R_1^2
+\end{align*}
+
+\begin{align*}
+  s &= \frac{-(L + R_1 R_2 C) \pm \sqrt{(L - R_1 R_2 C)^2 - 4 L C R_1^2}}{2 (R_1 + R_2) L C} \\
+  s_0 &= \frac{-(L + R_1 R_2 C) + \sqrt{(L - R_1 R_2 C)^2 - 4 L C R_1^2}}{2 (R_1 + R_2) L C} \\
+  s_1 &= \frac{-(L + R_1 R_2 C) - \sqrt{(L - R_1 R_2 C)^2 - 4 L C R_1^2}}{2 (R_1 + R_2) L C}
+\end{align*}
+
+\begin{align*}
+  \frac{(s-s_0)(s-s_1)}{Ls} Y(s) = U(s) \\
+  \frac{Y(s)}{U(s)} = \frac{Ls}{(s-s_0)(s-s_1)}  = \frac{A}{s-s_0} + \frac{B}{s-s_1} \\
+  Ls  = A(s-s_1) + B(s-s_0) \\
+  \text{Cuando } s = s_0 \Rightarrow Ls_0  = A(s_0-s_1) \Rightarrow A = \frac{Ls_0}{s_0-s_1} \\
+  \text{Cuando } s = s_1 \Rightarrow Ls_1  = B(s_1-s_0) \Rightarrow B = \frac{Ls_1}{s_1-s_0} \\
+  \frac{Y(s)}{U(s)} = \frac{Ls_0}{(s_0-s_1)(s-s_0)} + \frac{Ls_1}{(s_1-s_0)(s-s_1)} \\
+\end{align*}
+
+Se aplica la transformada inversa de Laplace para obtener la RESE:
+\begin{align*}
+  \frac{y(t)}{u(t)} = \frac{Ls_0}{(s_0-s_1)}e^{s_0t} + \frac{Ls_1}{(s_1-s_0)}e^{s_1t} \\
+  \tag{RESE}
+  y(t) = L u(t) \left[\frac{s_0}{(s_0-s_1)}e^{s_0t} + \frac{s_1}{(s_1-s_0)}e^{s_1t}\right]
+\end{align*}

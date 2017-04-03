@@ -1,0 +1,60 @@
+\begin{figure}[H]
+  \centering
+  \begin{circuitikz}[american currents, american voltages]
+    \draw
+    (0,0) node (start) [ground] {}
+    to [V=$u(t)$] (0, 3)
+    to [L=$L_1$, i=$I_{L_1}(t)$] (3, 3)
+    to [R=$R$, i=$i_R$] (6, 3)
+    to [C=$C$, v=$y(t)$] (6, 0)
+    to [short, -*] (start)
+    (3, 3)
+    to [L=$L_2$, i=$I_{L_2}(t)$, *-*] (3, 0)
+    ;
+
+    \draw [arrows={-latex}] (1.5, 0.875) arc (-90:-360:0.625) --++(-90:1mm);
+    \draw (1.5, 1.5) node [] {1};
+
+    \draw [arrows={-latex}] (4.5, 0.875) arc (-90:-300:0.625) --++(-30:1mm);
+    \draw (4.5, 1.5) node [] {2};
+  \end{circuitikz}
+\end{figure}
+
+Mallas:
+\begin{align*}
+  \tag{Malla 1}
+  u(t) & = v_{L_1} + v_{L_2} \\
+  \tag{Malla 2}
+  v_{L_2} & = i_R R + y(t) \\
+\end{align*}
+
+Relaciones:
+\begin{align*}
+  v_{L_1} & = L_1\frac{di_{L_1}(t)}{dt}, &
+  v_{L_2} & = L_2\frac{di_{L_2}(t)}{dt}, &
+  i_R & = C\frac{dy(t)}{dt}, &
+  i_{L_1} = i_{L_2} + i_R \Rightarrow \frac{di_{L_1}}{dt} = \frac{di_{L_2}}{dt} + C \ddot{y}(t)
+\end{align*}
+
+
+Se sustituyen las relaciones en las mallas:
+\begin{align*}
+  u(t) & = L_1\frac{di_{L_1}(t)}{dt} + L_2\frac{di_{L_2}(t)}{dt} \\
+  L_2\frac{di_{L_2}(t)}{dt} & = RC\frac{dy(t)}{dt} + y(t) \Rightarrow \frac{di_{L_2}(t)}{dt}  = \frac{RC}{L_2}\dot{y}(t) + y(t)
+\end{align*}
+
+Se sustituye Malla 2 en Malla 2 y se resuelve para la RES:
+\begin{align*}
+  u(t) & = L_1\frac{di_{L_1}(t)}{dt} + RC\frac{dy(t)}{dt} + y(t) \\
+  u(t) & = L_1\left( \frac{di_{L_2}}{dt} + C \ddot{y}(t) \right) + RC\dot{y}(t) + y(t) \\
+  u(t) & = L_1\left( \frac{RC}{L_2}\dot{y}(t) + y(t) + C \ddot{y}(t) \right) + RC\dot{y}(t) + y(t) \\
+  u(t) & =
+    \left(1 + L_1\right) y(t) +
+    \left(\frac{RL_1C}{L_2} + RC \right) \dot{y}(t) +
+    L_1C \ddot{y}(t)
+  \\
+  \tag{RES}
+  S(\overline{u} ,\overline{y}) &=     \left(1 + L_1\right) y(t) +
+      \left(\frac{RL_1C}{L_2} + RC \right) \dot{y}(t) +
+      L_1C \ddot{y}(t) - u(t) = 0
+\end{align*}
