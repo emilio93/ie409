@@ -1,0 +1,29 @@
+\usubsubsection{Ecuaciones del Sistema}
+  Relaciones de Tensión y Corriente en los Elementos:
+  \begin{align*}
+    v_{R1} &= R_1 i_{R1} &
+    v_{R2} &= R_2 i_{R2} &
+    v_{L1} &= L_1 \frac{di_{L1}}{dt} &
+    v_{L2} &= L_2 \frac{di_{L2}}{dt} &
+    i_C &= C \frac{dv_{C}}{dt}
+  \end{align*}
+
+  Mallas:
+  \begin{align*}
+    \tag{Malla 1}
+    V_{in} = v_{R1} + v_C &\Rightarrow u_1 = v_{R1} + x_1 \\
+    \tag{Malla 2}
+    v_{R1} = v_{L1} + v_{L2} &\Rightarrow v_{R2} = \frac{1}{L_1}\dot{x}_2 + \frac{1}{L_2}\dot{x}_3 \\
+    \tag{Malla 3}
+    v_{R2} = v_{L2} + v_C &\Rightarrow v_{R2} = \frac{1}{L_2}\dot{x}_3 + x_1
+  \end{align*}
+
+  Nodos:
+  \begin{align*}
+    \tag{Nodo 1}
+    i_x = i_{R1} + i_{L1} &\Rightarrow i_x = i_{R1} + x_2 \\
+    \tag{Nodo 2}
+    i_C = i_{R1} + i_{L2} &\Rightarrow \frac{1}{C}\dot{x}_1 = i_{R1} + x_2 \\
+    \tag{Nodo $V_x$}
+    i_{L1} = i_{L2} + i_{R2} &\Rightarrow x_2 = x_3 + i_{R2}
+  \end{align*}

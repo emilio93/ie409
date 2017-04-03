@@ -1,0 +1,25 @@
+\usubsubsection{Modelo Gráfico}
+
+\begin{figure}[H]
+  \centering
+  \begin{circuitikz}[american currents, american voltages, xscale=1.5]
+    \draw
+    (0,0)
+    to [V=$V_{in}$] (0, 6)
+    to [short, i=$i_x$, -*] (3, 6)
+    to [short] (6,6)
+    to [L=$L_1$, i=$i_{L1}$, -*] (6, 3)  node [right] {$V_x$}
+    to [R=$R_2$, i=$i_{R2}$] (6, 0)
+    to [short] (0, 0)
+    ;
+
+    \draw
+    (3, 6) to [R=$R_1$, i_=$i_{R1}$, *-*] (3, 3)
+    to [C=$C$, i_=$i_C$, *-*] (3, 0) node [ground] {}
+    ;
+
+    \draw
+    (3, 3) to [L=$L_2$, i<_=$i_{L2}$, -*] (6, 3)
+    ;
+  \end{circuitikz}
+\end{figure}

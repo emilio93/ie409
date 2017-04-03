@@ -1,0 +1,20 @@
+\usubsubsection{Modelo Gráfico}
+
+\begin{figure}[H]
+  \centering
+  \begin{circuitikz}[american currents, american voltages, xscale=1.5]
+    \draw (0, 0)
+    to [battery=$v_1(t)$] (0, 6)
+    to [R=$R_1$] (3, 6)
+    to [short] (6, 6)
+    to [C=$C$, v=$v_C$, i=$i_C$] (6, 3)
+    to [open] (6, 0) to [battery=$v_2(t)$] (6, 3) to [open] (6, 0)
+    to [short] (0, 0)
+    ;
+
+    \draw (3, 6)
+    to [L=$L$, i=$i_L$, *-] (3, 3)
+    to [R=$R_2$, -*] (3, 0)
+    ;
+  \end{circuitikz}
+\end{figure}

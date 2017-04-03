@@ -1,0 +1,47 @@
+\usubsubsection{Ecuaciones de los estados derivados}
+  \begin{align*}
+    \tag{Estado $x_1$ derivado}
+    \dot{x}_1 = f(x_1, x_2, u_1, u_2) \\
+    \tag{Estado $x_2$ derivado}
+    \dot{x}_2 = f(x_1, x_2, u_1, u_2)
+  \end{align*}
+
+  \noindent\textbf{Para $\dot{x}_1$:}
+
+    De la ecuación \ref{eq:1.2:3:vr1} y \ref{eq:1.2:3:Nodo1}:
+    \begin{align*}
+      \frac{v_{R1}}{R_1} &= x_2 + C\dot{x}_1 \Rightarrow
+      \dot{x}_1 = \frac{v_{R1}}{R_1 C} - \frac{1}{C} x_2
+    \end{align*}
+
+    De \ref{eq:1.2:3:Malla1} y \ref{eq:1.2:3:Malla2} se obtiene $v_{R1}$ para
+    colocarse en la ecuación anterior:
+    \begin{align*}
+      u_1 = v_{R1} + x_1 + u_2 \Rightarrow v_{R1} = u_1 - x_1 - u_2
+    \end{align*}
+    \begin{align*}
+      \dot{x}_1 &=  \frac{u_1 - x_1 - u_2}{R_1 C} - \frac{1}{C}x_2 \\
+      \tag{Estado $x_1$ Derivado}
+      \alignedbox{\dot{x}_1}{=
+        - \frac{1}{R_1 C} x_1
+        - \frac{1}{C}x_2
+        + \frac{1}{R_1 C} u_1
+        - \frac{1}{R_1 C} u_2}
+    \end{align*}
+
+  \noindent\textbf{Para $\dot{x}_2$:}
+
+    De \ref{eq:1.2:3:Malla1}, el resultado obtenido para $v_{R1}$ y la
+    ecuación \ref{eq:1.2:3:vr2}:
+    \begin{align*}
+      u_1 = v_{R1} + L \dot{x}_2 + v_{R2} \Rightarrow
+      \dot{x}_2 = \frac{1}{L}u_1 - \frac{v_{R1} + v_{R2}}{L}
+    \end{align*}
+    \begin{align*}
+      \dot{x}_2 &= \frac{1}{L}u_1 - \frac{u_1 - x_1 - u_2 + R_2 x_2}{L} \\
+      \tag{Estado $x_2$ Derivado}
+      \alignedbox{\dot{x}_2}{=
+        \frac{1}{L} x_1
+        - \frac{R_2}{L} x_2
+        + \frac{1}{L} u_2}
+      \end{align*}
