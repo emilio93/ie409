@@ -78,3 +78,36 @@
     \vspace*{\fill}
   \end{titlepage}
 }
+
+% \portadapequena{Homework}{John Doe}{123456}{\today}
+\newcommand{\portadapequena}[4]
+{
+  \begin{flushleft}
+    {\large Universidad de Costa Rica}\\
+    {\large Escuela de Ingeniería Eléctrica}\\
+    {\large Análisis de Sistemas - IE0409}\\
+    {\large \bfseries {#1}}\\
+    {\large {#2}} -
+    {\large {#3}}\\
+    {\large {#4}}
+  \end{flushleft}
+}
+
+% Command "alignedbox{}{}" for a box within an align environment
+% Source: http://www.latex-community.org/forum/viewtopic.php?f=46&t=8144
+\newlength\dlf  % Define a new measure, dlf
+\newcommand\alignedbox[2]{
+% Argument #1 = before & if there were no box (lhs)
+% Argument #2 = after & if there were no box (rhs)
+&  % Alignment sign of the line
+{
+\settowidth\dlf{$\displaystyle #1$}
+    % The width of \dlf is the width of the lhs, with a displaystyle font
+\addtolength\dlf{\fboxsep+\fboxrule}
+    % Add to it the distance to the box, and the width of the line of the box
+\hspace{-\dlf}
+    % Move everything dlf units to the left, so that & #1 #2 is aligned under #1 & #2
+\boxed{#1 #2}
+    % Put a box around lhs and rhs
+}
+}
