@@ -1,77 +1,66 @@
-
 \usubsubsection{Ecuaciones de los estados derivados}
   \begin{align*}
     \tag{Estado $x_1$ derivado}
-    \dot{v}_C = f(x_1, x_2, x_3, u_1) \\
+    \dot{x}_1 = f(x_1, x_2, u_1, u_2) \\
     \tag{Estado $x_2$ derivado}
-    \dot{i}_{L1} = f(x_1, x_2, x_3, u_1) \\
+    \dot{x}_2 = f(x_1, x_2, u_1, u_2) \\
     \tag{Estado $x_3$ derivado}
-    \dot{i}_{L2} = f(x_1, x_2, x_3, u_1)
+    \dot{x}_3 = f(x_1, x_2, u_1, u_2)
   \end{align*}
 
-\noindent\textbf{Para $\dot{x}_1$:}
-  \begin{align*}
-    i_C = C\frac{dv_C}{dt} \Rightarrow i_C = C \dot{x}_1
-  \end{align*}
+  \noindent\textbf{Para $\dot{x}_1$:}
 
-  De Nodo 2:
-  \begin{align*}
-    i_C &= i_{L2} + i_{R2} \\
-    \dot{x}_1 &= \frac{1}{C} (x_3 + i_{R2})
-  \end{align*}
+    De \ref{eq:1.1:3:Nodo2}:
+    \begin{align*}
+      \dot{x}_1 = \frac{i_{R1}}{C} + \frac{1}{C} x_2
+    \end{align*}
 
-  De Nodo $V_x$ se encuentra $i_{R2}$ y se sustituye en la ecuación anterior:
-  \begin{align*}
-    i_{L1} &= i_{L2} + i_{R2} \\
-    x_2 &= x_3 + i_{R2} \\
-    i_{R2} &= x_3 - x_2 \\
-    \dot{x}_1 &= \frac{1}{C} (x_3 + x_3 - x_2)\\
-    \dot{x}_1 &= \frac{1}{C} (2 x_3 - x_2) \\
-    \tag{Estado $x_1$ Derivado}
-    \alignedbox{\dot{x}_1}{= - \frac{1}{C} x_2 + \frac{2}{C} x_3}
-  \end{align*}
+    Sustituyendo la ecuación \ref{eq:1.1:3:vr1} en \ref{eq:1.1:3:Malla1} se
+    encuentra $i_{R1}$:
+    \begin{align*}
+      u_1 &= R_1 i_{R1} + x_1 \\
+      i_{R1} &= \frac{1}{R_1} u_1 - \frac{1}{R_1} x_1
+    \end{align*}
 
-\noindent\textbf{Para $\dot{x}_2$:}
-  \begin{align*}
-    v_{L1} &= L_1 \frac{di_{L1}}{dt} \Rightarrow v_{L1} = L_1\dot{x}_2
-  \end{align*}
+    Se tiene entonces:
+    \begin{align*}
+      \tag{Estado $x_1$ Derivado}
+      \alignedbox{\dot{x}_1}{= \frac{1}{R_1 C} u_1 - \frac{1}{R_1 C} x_1 + \frac{1}{C} x_2}
+    \end{align*}
 
-  De Malla 2:
-  \begin{align*}
-    v_{R1} &= v_{L1} + v_{L2} \\
-    v_{L1} &= v_{R1} - v_{L2} \\
-    L_1\dot{x}_2 &= v_{R1} - v_{L2} \\
-    \dot{x}_2 &= \frac{1}{L_1} (v_{R1} - v_{L2})
-  \end{align*}
+  \noindent\textbf{Para $\dot{x}_2$:}
 
-  De Malla 3:
-  \begin{align*}
-    v_{R2} &= v_{L2} + v_C \Rightarrow
-    v_{L2} = v_{R2} - x_1
-  \end{align*}
+    De \ref{eq:1.1:3:Malla2}:
+    \begin{align*}
+      \dot{x}_2 &= \frac{v_{R1}}{L_1} - \frac{L_2}{L_1} \dot{x}_3
+    \end{align*}
 
-  De los resultados anteriores:
-  \begin{align*}
-    \dot{x}_2 = \frac{1}{L_1} (v_{R1} - v_{R2} + x_1)
-  \end{align*}
+    Por inspección:
+    \begin{align*}
+      v_{R1} &= V_{in} - v_C \Rightarrow
+      v_{R1} = u_1 - x_1
+    \end{align*}
 
-  De Malla 1 se obtiene $v_{R1}$:
-  \begin{align*}
-    v_{R1} &= V_{in} - v_C  \Rightarrow
-    v_{R1} = u_1 - x_1
-  \end{align*}
+    De \ref{eq:1.1:3:Malla3}:
+    \begin{align*}
+      \dot{x}_3 = \frac{1}{L_2} y_1 - \frac{1}{L_2} x_1
+    \end{align*}
 
-  $v_{R2}$ se obtiene de multiplicar $R_2$ por $i_{R2}$ obtenido previamente:
-  \begin{align*}
-    v_{R2} &= R_2( x_3 - x_2 )
-  \end{align*}
+    De \ref{eq:1.1:3:Nodovx}:
+    \begin{align*}
+      y_1 &= R_2 x_2 - R_2 x_3
+    \end{align*}
 
-  Se sustituye $v_{R1}$ y $v_{R2}$:
-  \begin{align*}
-    \dot{x}_2 &= \frac{1}{L_1} (u_1 - x_1 - R_2( x_3 - x_2 ) + x_1) \\
-    \dot{x}_2 &= \frac{1}{L_1} (u_1 - R_2 x_3 + R_2 x_2 ) \\
-    \tag{Estado $x_2$ Derivado}
-    \alignedbox{\dot{x}_2}{= \frac{1}{L_1} u_1 + \frac{R_2}{L_1} x_2 - \frac{R_2}{L_1} x_3}
-  \end{align*}
+    Se tiene entonces:
+    \begin{align*}
+      \tag{Estado $x_3$ Derivado}
+      \alignedbox{\dot{x}_3}{= \frac{R_2}{L_2} x_2 - \frac{R_2}{L_2} x_3 - \frac{1}{L_2} x_1}
+    \end{align*}
 
-\noindent\textbf{Para $\dot{x}_3$:}
+    Y para $\dot{x}_2$:
+    \begin{align*}
+      \dot{x}_2 &= \frac{1}{L_1} u_1 - \frac{1}{L_1} x_1 - \frac{L_2}{L_1} \left( \frac{R_2}{L_2} x_2 - \frac{R_2}{L_2} x_3 - \frac{1}{L_2} x_1 \right)\\
+      \dot{x}_2 &= \frac{1}{L_1} u_1 - \frac{1}{L_1} x_1 - \frac{R_2}{L_1} x_2 + \frac{R_2}{L_1} x_3 + \frac{1}{L_1} x_1 \\
+      \tag{Estado $x_2$ Derivado}
+      \alignedbox{\dot{x}_2}{= \frac{1}{L_1} u_1 - \frac{R_2}{L_1} x_2 + \frac{R_2}{L_1} x_3}
+    \end{align*}
