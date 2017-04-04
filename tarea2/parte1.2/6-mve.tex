@@ -1,0 +1,34 @@
+\usubsubsection{Modelo en Variables de Estado}
+\[ \setstretch{2}
+  \dot{\textbf{x}}=
+  \left[
+    {\begin{array}{cc}
+      -\frac{1}{R_1 C} & -\frac{1}{C} \\
+      \frac{1}{L}      & -\frac{R_2}{L} \\
+    \end{array}}
+  \right]
+  \textbf{x} +
+  \left[
+    {\begin{array}{cc}
+      \frac{1}{R_1 C} & -\frac{1}{R_1 C} \\
+      0               & \frac{1}{L} \\
+    \end{array}}
+  \right]
+  \textbf{u}
+\]
+
+\[ \setstretch{2}
+  \textbf{y}=
+  \left[
+    {\begin{array}{ccc}
+      0 & 1 \\
+    \end{array}}
+  \right]
+  \textbf{x} +
+  \left[
+    {\begin{array}{cc}
+      0 \\
+    \end{array}}
+  \right]
+  \textbf{u}
+\]
