@@ -1,0 +1,75 @@
+\usubsection{2)}
+\begin{align*}
+  \frac{1}{4}\frac{d^2y(t)}{dt^2} + 25 \frac{dy(t)}{dt} + 7 y(t)
+  &= 12 \frac{d^2u(t)}{dt^2} + 4 \frac{du(t)}{dt} + 8u(t)
+  \\
+  \left( \frac{1}{4}p^2 + 25p + 7 \right) y(t)
+  &= \left(12p^2 + 4p + 8\right) u(t)
+  \\
+  \left( p^2 + 100p + 28 \right) y(t)
+  &= \left(48p^2 + 16p + 32\right) u(t)
+  \\
+  y(t) &= \frac{48p^2 + 16p + 32}{p^2 + 100p + 28} u(t)
+\end{align*}
+
+Se reescribe la ecuación:
+\begin{align*}
+  \frac{y}{x_1} \frac{x_1}{u} &= \frac{48p^2 + 16p + 32}{p^2 + 100p + 28}
+\end{align*}
+
+Si $x_1 = \left(p^2 + 100p + 28\right)^{-1}u$, entonces $y = (48p^2 + 16p + 32)x_1$.
+
+Ya se tiene un primer estado $x_1$, se define:
+\begin{align*}
+  x_2 &= \dot{x}_1
+\end{align*}
+
+Se desarrolla a partir de la definición de $x_1$:
+\begin{align*}
+  u &= \left(p^2 + 100p + 28\right)x_1 \\
+  u &= p^2 x_1 + 100p \phantom{\cdot} x_1 + 28 x_1 \\
+  u &= \dot{x}_2 + 100 \dot{x}_1 + 28 x_1 \\
+  \dot{x}_2 &= u - 100 x_2 - 28 x_1
+\end{align*}
+
+La salida por su parte:
+\begin{align*}
+  y &= (48p^2 + 16p + 32)x_1 \\
+  y &= 48p^2 x_1 + 16p\phantom{\cdot} x_1 + 32 x_1 \\
+  y &= 48 \ddot{x}_1 + 16 \dot{x}_1 + 32 x_1 \\
+  y &= 48 \dot{x}_2 + 16 x_2 + 32 x_1 \\
+  y &= 48 (u - 100 x_2 - 28 x_1) + 16 x_2 + 32 x_1 \\
+  y &= 48 u - 4800 x_2 - 1344 x_1 + 16 x_2 + 32 x_1 \\
+  y &= 48 u - 4784 x_2 - 1312 x_1
+\end{align*}
+
+\usubsubsection{Modelo en Variables de Estado}
+\[ \setstretch{2}
+  \dot{\textbf{x}}=
+  \left[
+    {\begin{array}{cc}
+      0   & 1    \\
+      -28 & -100 \\
+    \end{array}}
+  \right]
+  \textbf{x} +
+  \left[
+    {\begin{array}{cc}
+      0 \\
+      1 \\
+    \end{array}}
+  \right]
+  \textbf{u}
+\]
+
+\[ \setstretch{2}
+  \textbf{y}=
+  \left[
+    {\begin{array}{ccc}
+      -1312 & -4784 \\
+    \end{array}}
+  \right]
+  \textbf{x} +
+  48
+  \textbf{u}
+\]

@@ -1,0 +1,131 @@
+\usubsection{1)}
+\begin{align*}
+  3\frac{d^3y(t)}{dt^3}
+  + 5 \frac{d^2y(t)}{dt^2}
+  + 26 \frac{dy(t)}{dt}
+  + 3y(t)
+  &= 6\frac{du(t)}{dt}
+  + 4u(t)
+  \\
+  \left(
+    3p^3 + 5 p^2 + 26 p + 3
+  \right) y(t)
+  &= \left(
+    6p + 4
+  \right) u(t)
+  \\
+  y(t) &= \left( \frac{6p + 4}{3p^3 + 5 p^2 + 26 p + 3} \right) u(t)
+\end{align*}
+
+Las raices para el denominador son $\approx -0.1179,  -0.7744\pm j2.8079$.
+\begin{align*}
+  y(t) &= \left( \frac{6p + 4}{(p+0.1179)(p+0.7744-j2,8079)(p+0.7744+j2,8079)} \right) u(t)
+  \\
+  y(t) &= \left( \frac{6p + 4}{(p+0.1179)(p^2+1.5488p+8.4840)^2} \right) u(t)
+\end{align*}
+
+Se encuentran las fracciones parciales:
+
+\begin{align*}
+  \frac{6p + 4}{(p+0.1179)(p^2+1.5488p+8.4840)^2}
+  &= \frac{A}{p+0.1179} + \frac{B}{p+0.7744-j2,8079} + \frac{C}{p+0.7744+j2,8079}
+\end{align*}
+\begin{align*}
+  6p + 4
+  &= A (p^2+1.5488p+8.4840)^2
+  + B (p+0.1179)(p+0.7744+j2,8079)
+  + C (p+0.1179)(p+0.7744-j2,8079)
+\end{align*}
+
+Cuando $p=-0.1179$:
+\begin{align*}
+  6(-0.1179) + 4
+  &= A ((-0.1179)^2+1.5488(-0.1179)+8.4840)^2
+  \\
+  A &= \frac{6(-0.1179) + 4}{((-0.1179)^2+1.5488(-0.1179)+8.4840)^2}
+  \\
+  A &\approx 0.0476
+\end{align*}
+
+Cuando $p=-0.7744+j2,8079$:
+\begin{align*}
+  6(-0.7744+j2,8079) + 4
+  &= B ((-0.7744+j2,8079)+0.1179)((-0.7744+j2,8079)+0.7744+j2,8079)
+  \\
+  B &= \frac{6(-0.7744+j2,8079) + 4}
+  {((-0.7744+j2,8079)+0.1179)((-0.7744+j2,8079)+0.7744+j2,8079)}
+  \\
+  B &= \frac{-0.6464+j16.8474}
+  {(-0.6565+j2,8079)(j5.6158)}
+  = \frac{-0.6464+j16.8474}
+  {-15.7686-j3.6868}
+  \\
+  B &\approx -0.1980-j1.0221
+\end{align*}
+
+Cuando $p=-0.7744-j2.8079$:
+\begin{align*}
+  6(-0.7744-j2.8079) + 4
+  &= C ((-0.7744-j2.8079)+0.1179)((-0.7744-j2.8079)+0.7744-j2,8079)
+  \\
+  C &= \frac{6(-0.7744-j2.8079) + 4}
+  {((-0.7744-j2.8079)+0.1179)((-0.7744-j2.8079)+0.7744-j2,8079)}
+  \\
+  C &= \frac{-0.6464-j16.8474}
+  {(-0.6565-j2,8079)(-j5.6158)}
+  = \frac{-0.6464-j16.8474}
+  {-15.7686+j3.6868}
+  \\
+  C &\approx -0.1980+j1.0221
+\end{align*}
+
+Entonces se tiene:
+\begin{align*}
+  y(t) &= \left(
+    \frac{0.0476}{p+0.1179}
+    + \frac{-0.1980-j1.0221}{p+0.7744-j2,8079}
+    + \frac{-0.1980+j1.0221}{p+0.7744+j2,8079}
+  \right) u(t)
+\end{align*}
+
+Se asignan las variables de estado:
+\begin{align*}
+  x_1 &= \frac{1}{p+0.1179}u \Rightarrow \dot{x}_1 = -0.1179x_1 + u
+  \\
+  x_2 &= \frac{1}{p+0.7744-j2,8079}u \Rightarrow \dot{x}_2 = -(0.7744-j2,8079)x_2 + u
+  \\
+  x_3 &= \frac{1}{p+0.7744+j2,8079}u \Rightarrow \dot{x}_3 = -(0.7744+j2,8079)x_3 + u
+\end{align*}
+
+\usubsubsection{Modelo en Variables de Estado}
+\[ \setstretch{2}
+  \dot{\textbf{x}}=
+  \left[
+    {\begin{array}{ccc}
+      -0.1179 & 0                 & 0 \\
+      0       & -(0.7744-j2,8079) & 0 \\
+      0       & 0                 & -(0.7744+j2,8079) \\
+    \end{array}}
+  \right]
+  \textbf{x} +
+  \left[
+    {\begin{array}{cc}
+      1 \\
+      1 \\
+      1 \\
+    \end{array}}
+  \right]
+  \textbf{u}
+\]
+
+\[ \setstretch{2}
+  \textbf{y}=
+  \left[
+    {\begin{array}{ccc}
+      0.0476 & -0.1980-j1.0221     & -0.1980+j1.0221 \\
+    \end{array}}
+  \right]
+  \textbf{x} +
+  0
+  \textbf{u}
+\]
