@@ -8,103 +8,96 @@
   + 4u(t)
   \\
   \left(
-    3p^3 + 5 p^2 + 26 p + 3
+    p^3 + \frac{5}{3} p^2 + \frac{26}{3} p + 1
   \right) y(t)
   &= \left(
-    6p + 4
+    2p + \frac{4}{3}
   \right) u(t)
   \\
-  y(t) &= \left( \frac{6p + 4}{3p^3 + 5 p^2 + 26 p + 3} \right) u(t)
+  y(t) &= \left( \frac{2p + \frac{4}{3}}{p^3 + \frac{5}{3} p^2 + \frac{26}{3} p + 1} \right) u(t)
 \end{align*}
 
-Las raices para el denominador son $\approx -0.1179,  -0.7744\pm j2.8079$.
+Las raices para el denominador son:
 \begin{align*}
-  y(t) &= \left( \frac{6p + 4}{(p+0.1179)(p+0.7744-j2,8079)(p+0.7744+j2,8079)} \right) u(t)
-  \\
-  y(t) &= \left( \frac{6p + 4}{(p+0.1179)(p^2+1.5488p+8.4840)^2} \right) u(t)
+  p_1 &\approx -0.117867 &
+  p_2 &\approx -0.774400 + j2.807921 &
+  p_3 &\approx -0.774400 - j2.807921
+\end{align*}
+\begin{align*}
+  y(t) &= \left( \frac{2p + \frac{4}{3}}{(p-p_1)(p-p_2)(p-p_3)} \right) u(t)
 \end{align*}
 
 Se encuentran las fracciones parciales:
-
 \begin{align*}
-  \frac{6p + 4}{(p+0.1179)(p^2+1.5488p+8.4840)^2}
-  &= \frac{A}{p+0.1179} + \frac{B}{p+0.7744-j2,8079} + \frac{C}{p+0.7744+j2,8079}
+  \frac{2p + \frac{4}{3}}{(p-p_1)(p-p_2)(p-p_3)}
+  &= \frac{A}{p-p_1} + \frac{B}{p-p_2} + \frac{C}{p-p_3}
 \end{align*}
 \begin{align*}
-  6p + 4
-  &= A (p^2+1.5488p+8.4840)^2
-  + B (p+0.1179)(p+0.7744+j2,8079)
-  + C (p+0.1179)(p+0.7744-j2,8079)
+  2p + \frac{4}{3}
+  &= A (p-p_2)(p-p_3)
+  + B (p-p_1)(p-p_3)
+  + C (p-p_1)(p-p_2)
 \end{align*}
 
-Cuando $p=-0.1179$:
+Cuando $p=p_1$:
 \begin{align*}
-  6(-0.1179) + 4
-  &= A ((-0.1179)^2+1.5488(-0.1179)+8.4840)^2
+  2p_1 + \frac{4}{3}
+  &= A (p_1-p_2)(p_1-p_3)
   \\
-  A &= \frac{6(-0.1179) + 4}{((-0.1179)^2+1.5488(-0.1179)+8.4840)^2}
+  A &= \frac{2p_1 + \frac{4}{3}}{(p_1-p_2)(p_1-p_3)}
   \\
-  A &\approx 0.0476
+  A &\approx -0.037799
 \end{align*}
 
-Cuando $p=-0.7744+j2,8079$:
+Cuando $p=p_2$:
 \begin{align*}
-  6(-0.7744+j2,8079) + 4
-  &= B ((-0.7744+j2,8079)+0.1179)((-0.7744+j2,8079)+0.7744+j2,8079)
+  2p_2 + \frac{4}{3}
+  &= B (p_2-p_1)(p_2-p_3)
   \\
-  B &= \frac{6(-0.7744+j2,8079) + 4}
-  {((-0.7744+j2,8079)+0.1179)((-0.7744+j2,8079)+0.7744+j2,8079)}
+  B &= \frac{2p_2 + \frac{4}{3}}{(p_2-p_1)(p_2-p_3)}
   \\
-  B &= \frac{-0.6464+j16.8474}
-  {(-0.6565+j2,8079)(j5.6158)}
-  = \frac{-0.6464+j16.8474}
-  {-15.7686-j3.6868}
-  \\
-  B &\approx -0.1980-j1.0221
+  B &\approx 0.018899-j0.479266
 \end{align*}
 
-Cuando $p=-0.7744-j2.8079$:
+Cuando $p=p_2$:
 \begin{align*}
-  6(-0.7744-j2.8079) + 4
-  &= C ((-0.7744-j2.8079)+0.1179)((-0.7744-j2.8079)+0.7744-j2,8079)
+  2p_3 + \frac{4}{3}
+  &= C (p_3-p_1)(p_3-p_2)
   \\
-  C &= \frac{6(-0.7744-j2.8079) + 4}
-  {((-0.7744-j2.8079)+0.1179)((-0.7744-j2.8079)+0.7744-j2,8079)}
+  C &= \frac{2p_3 + \frac{4}{3}}{(p_3-p_1)(p_3-p_2)}
   \\
-  C &= \frac{-0.6464-j16.8474}
-  {(-0.6565-j2,8079)(-j5.6158)}
-  = \frac{-0.6464-j16.8474}
-  {-15.7686+j3.6868}
-  \\
-  C &\approx -0.1980+j1.0221
+  C &\approx 0.018899+j0.479266
 \end{align*}
 
 Entonces se tiene:
 \begin{align*}
-  y(t) &= \left(
-    \frac{0.0476}{p+0.1179}
-    + \frac{-0.1980-j1.0221}{p+0.7744-j2,8079}
-    + \frac{-0.1980+j1.0221}{p+0.7744+j2,8079}
+  y(t) &\approx \left(
+    \frac{-0.037799}{p + 0.117867}
+    + \frac{0.018899 - j0.479266}{p + 0.774400 - j2.807921}
+    + \frac{0.018899 + j0.479266}{p + 0.774400 + j2.807921}
   \right) u(t)
 \end{align*}
 
 Se asignan las variables de estado:
 \begin{align*}
-  x_1 &= \frac{1}{p+0.1179}u \Rightarrow \dot{x}_1 = -0.1179x_1 + u
+  x_1 &\approx \frac{1}{p + 0.117867}u
+  \Rightarrow \dot{x}_1 \approx -0.117867x_1 + u
   \\
-  x_2 &= \frac{1}{p+0.7744-j2,8079}u \Rightarrow \dot{x}_2 = -(0.7744-j2,8079)x_2 + u
+  x_2 &\approx \frac{1}{p + 0.774400 - j2.807921}u
+  \Rightarrow \dot{x}_2 \approx -(0.774400 - j2.807921)x_2 + u
   \\
-  x_3 &= \frac{1}{p+0.7744+j2,8079}u \Rightarrow \dot{x}_3 = -(0.7744+j2,8079)x_3 + u
+  x_3 &\approx \frac{1}{p + 0.774400 + j2.807921}u
+  \Rightarrow \dot{x}_3 \approx -(0.774400 + j2.807921)x_3 + u
 \end{align*}
 
 \usubsubsection{Modelo en Variables de Estado}
 \[ \setstretch{2}
-  \dot{\textbf{x}}=
+  \dot{\textbf{x}}\approx
   \left[
     {\begin{array}{ccc}
-      -0.1179 & 0                 & 0 \\
-      0       & -(0.7744-j2,8079) & 0 \\
-      0       & 0                 & -(0.7744+j2,8079) \\
+      -0.117867 & 0                       & 0 \\
+      0         & -(0.774400 - j2.807921) & 0 \\
+      0         & 0                       & -(0.774400 + j2.807921) \\
     \end{array}}
   \right]
   \textbf{x} +
@@ -119,13 +112,17 @@ Se asignan las variables de estado:
 \]
 
 \[ \setstretch{2}
-  \textbf{y}=
+  \textbf{y}\approx
   \left[
     {\begin{array}{ccc}
-      0.0476 & -0.1980-j1.0221     & -0.1980+j1.0221 \\
+      -0.037799 & 0.018899-j0.479266 & 0.018899+j0.479266 \\
     \end{array}}
   \right]
   \textbf{x} +
-  0
+  \left[
+    {\begin{array}{c}
+      0
+    \end{array}}
+  \right]
   \textbf{u}
 \]
