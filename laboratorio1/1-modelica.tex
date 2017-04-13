@@ -1,0 +1,22 @@
+\section{Modelica}
+
+\begin{figure}[H]
+  \centering
+  \begin{circuitikz}[american voltages, american currents, scale = 0.75]
+    \draw
+    (0, 0)
+    to [battery=$V(t)$] (0, 2)
+    to [open, v=$ $] (0, 0) to [open] (0, 4)
+    to [switch, mirror] (0, 2) to [open] (0, 4)
+    to [R=$R$] (4, 4)
+    to [L=$L$] (4, 0)
+    to [C=$C$] (0, 0)
+    ;
+  \end{circuitikz}
+  \caption{Modelo gráfico.}
+\end{figure}
+
+\input{modelica/1-caso-general}
+\input{modelica/2-caso1}
+\input{modelica/3-caso2}
+\input{modelica/4-caso3}

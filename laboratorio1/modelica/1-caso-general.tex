@@ -1,0 +1,47 @@
+\usubsection{Caso General}
+
+Cuando el interruptor está cerrado se tiene:
+\begin{equation*}
+  V(t) = Ri(t) + L\frac{di(t)}{dt} + \frac{1}{C}\int_{0}^ti(t)dt
+\end{equation*}
+
+Se aplica la transformada de Laplace:
+\begin{align*}
+  V(s) &= RI(s)
+  + L \left[ sI(s) - i(0) \right]
+  + \frac{1}{C} \left[ \frac{1}{s} I(s) \right] \nonumber
+  = I(s) \left[R + Ls +\frac{1}{Cs}\right] - Li(0)
+\end{align*}
+\begin{align*}
+  I(s) &= \frac{V(s) + Li(0)}{Ls^2 + Rs + \frac{1}{C}}
+  = \frac{L\left(V(s) + Li(0)\right)}{s^2 + \frac{R}{L}s + \frac{1}{LC}}
+\end{align*}
+\begin{align*}
+  s_1 &= \frac{-\frac{R}{L} - \sqrt{\left(\frac{R}{L}\right)^2-\frac{4}{LC}}}{2}
+  &
+  s_2 &= \frac{-\frac{R}{L} + \sqrt{\left(\frac{R}{L}\right)^2-\frac{4}{LC}}}{2}
+\end{align*}
+\begin{equation*}
+  I(s) = \frac{L\left(V(s) + Li(0)\right)}{(s-s_1)(s-s_2)}
+  = \frac{A}{s-s_1} + \frac{B}{s-s_2}
+\end{equation*}
+\begin{align*}
+  L\left(V(s) + Li(0)\right) = A(s-s_2) + B(s-s_1)
+\end{align*}
+\begin{align*}
+  A &= \frac{L\left(V(s_1) + Li(0)\right)}{s_1-s_2}
+  &
+  B &= \frac{L\left(V(s_2) + Li(0)\right)}{s_2-s_1}
+\end{align*}
+\begin{align*}
+  I(s) &= \frac{L\left(V(s_1) + Li(0)\right)}{s_1-s_2}\frac{1}{s-s_1} +
+  \frac{L\left(V(s_2) + Li(0)\right)}{s_2-s_1}\frac{1}{s-s_2}
+\end{align*}
+
+Se aplica la transformada inversa de Laplace:
+
+\begin{align*}
+  i(t) &=
+  \frac{L\left(V(s_1) + Li(0)\right)}{s_1-s_2}e^{s_1t} +
+  \frac{L\left(V(s_2) + Li(0)\right)}{s_2-s_1}e^{s_2t}
+\end{align*}

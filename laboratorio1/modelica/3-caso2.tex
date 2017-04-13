@@ -1,0 +1,61 @@
+\usubsection{Caso 2}
+
+\usubsubsection{Solución Teórica}
+
+\begin{align*}
+  R&=20k\Omega&
+  C&=100\mu F&
+  L&=7mH
+\end{align*}
+\begin{align*}
+  s_1 &= \frac{-\frac{20k\Omega}{7mH}
+  - \sqrt{\left(\frac{20k\Omega}{7mH}\right)^2-\frac{4}{7mH100\mu F}}}{2}
+  &
+  s_2 &= \frac{-\frac{20k\Omega}{7mH}
+  + \sqrt{\left(\frac{20k\Omega}{7mH}\right)^2-\frac{4}{7mH100\mu F}}}{2}
+\end{align*}
+
+\usubsubsection{Simulación}
+
+\begin{figure}[H]
+  \begin{lstlisting}
+    model RLCSerie2
+      import Modelica.SIunits.Resistance;
+      import Modelica.SIunits.Capacitance;
+      import Modelica.SIunits.Inductance;
+      import Modelica.SIunits.Voltage;
+      import Modelica.SIunits.Current;
+
+      parameter Resistance R = 20000.0;
+      parameter Capacitance C = 0.000100;
+      parameter Inductance L = 0.007;
+
+      Voltage Vs, Vr, Vl;
+      Voltage Vc(start=0, fixed=true);
+      Current Il(start=0, fixed=true);
+
+    equation
+      Vs = if time >= 5.0 then 10 else 0;
+      Vr = R * Il;
+      Vl = L * der(Il);
+      Il = C * der(Vc);
+      Vs = Vr + Vl + Vc;
+      annotation(experiment(StartTime=0.0, StopTime=25.0));
+    end RLCSerie2;
+  \end{lstlisting}
+  \caption{Código para el segundo caso.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \label{gr:caso1:corrientes}
+  \includegraphics[width=\textwidth]{modelica/graficas/2-corrientes}
+  \caption{Gráfica de Corrientes para el segundo caso.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \label{gr:caso1:tensiones}
+  \includegraphics[width=\textwidth]{modelica/graficas/2-tensiones}
+  \caption{Gráfica de Tensiones para el segundo caso.}
+\end{figure}
